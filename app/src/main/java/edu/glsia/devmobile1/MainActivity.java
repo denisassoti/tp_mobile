@@ -1,5 +1,6 @@
 package edu.glsia.devmobile1;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -12,8 +13,17 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+
+import edu.glsia.devmobile1.models.Matiere;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button btnpuissance;
+
+    //objet matiere
+    Matiere matiere;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +32,26 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        //initialisations
+        btnpuissance = findViewById(R.id.btnMenuPuissance);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        btnpuissance.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                matiere = new Matiere();
+                matiere.setId(1);
+                matiere.setLibelle("matiere 1");
+                Intent puis = new Intent(MainActivity.this,PuissanceActivity.class);
+                puis.putExtra("valA",15);
+                puis.putExtra("edu.glsia.devmobile1.models.Matiere",matiere);
+                startActivity(puis);
+
             }
         });
     }
