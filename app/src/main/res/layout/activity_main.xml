@@ -67,13 +67,13 @@
                  <Button
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
-                     android:text="BUTTON A"
+                     android:text="MATIERE"
                      android:padding="@dimen/menu_btn_dim"
                      android:layout_marginTop="5dp"
                      android:backgroundTint="@color/red"
                      android:layout_marginLeft="15dp"
                      android:layout_marginRight="15dp"
-                     android:id="@+id/btnA"
+                     android:id="@+id/btnMatiere"
                      />
                  <Button
                      android:layout_width="match_parent"

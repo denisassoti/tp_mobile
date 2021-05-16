@@ -5,7 +5,8 @@ import android.os.Parcelable;
 
 public class Matiere implements Parcelable {
     private int id;
-    private String libelle;
+    private String libelle, enseignant, image;
+    private boolean type;
 
     public Matiere(){
 
@@ -27,6 +28,29 @@ public class Matiere implements Parcelable {
         this.libelle = libelle;
     }
 
+    public String getEnseignant() {
+        return enseignant;
+    }
+
+    public void setEnseignant(String enseignant) {
+        this.enseignant = enseignant;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public boolean isType() {
+        return type;
+    }
+
+    public void setType(boolean type) {
+        this.type = type;
+    }
 
     @Override
     public int describeContents() {
@@ -37,11 +61,17 @@ public class Matiere implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.getId());
         dest.writeString(this.getLibelle());
+        dest.writeString(this.getEnseignant());
+        dest.writeString(this.getImage());
+        dest.writeBoolean(this.isType());
     }
 
     public Matiere(Parcel parcel){
         this.setId(parcel.readInt());
         this.setLibelle(parcel.readString());
+        this.setEnseignant(parcel.readString());
+        this.setImage(parcel.readString());
+        this.setType(parcel.readBoolean());
     }
 
     public static  final Creator<Matiere> CREATOR = new Creator<Matiere>() {

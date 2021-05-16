@@ -21,6 +21,8 @@ import edu.glsia.devmobile1.models.Matiere;
 public class MainActivity extends AppCompatActivity {
 
     private Button btnpuissance;
+    private Button btnMatiere;
+
 
     //objet matiere
     Matiere matiere;
@@ -32,9 +34,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        initView();
+
+    }
+
+    void initView(){
         //initialisations
         btnpuissance = findViewById(R.id.btnMenuPuissance);
-
+        btnMatiere = findViewById(R.id.btnMatiere);
     }
 
     @Override
@@ -52,6 +59,15 @@ public class MainActivity extends AppCompatActivity {
                 puis.putExtra("edu.glsia.devmobile1.models.Matiere",matiere);
                 startActivity(puis);
 
+            }
+        });
+
+        btnMatiere.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent mat = new Intent(MainActivity.this, MatiereActivity.class);
+                startActivity(mat);
             }
         });
     }
