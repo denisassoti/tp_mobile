@@ -32,10 +32,10 @@ public class DetailMatiere extends AppCompatActivity {
         }else if(matiere.isType() == true){
             type.setText("Obligatoire");
         }
-        String variableName = matiere.getImage();
+       // int variableName = Integer.parseInt(matiere.getImage());
         //image.setImageResource(R.drawable.variableName);
         //Log.i("image",matiere.getEnseignant());
-        image.setImageResource(getResources().getIdentifier(variableName, "drawable", getPackageName()));
+        //image.setImageResource(getResources().getIdentifier(variableName, "drawable", getPackageName()));
     }
 
     void initViews(){

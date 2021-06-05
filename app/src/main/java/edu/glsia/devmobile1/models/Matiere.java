@@ -5,11 +5,20 @@ import android.os.Parcelable;
 
 public class Matiere implements Parcelable {
     private int id;
-    private String libelle, enseignant, image;
+    private String libelle, enseignant;
+    private int image;
     private boolean type;
 
     public Matiere(){
 
+    }
+
+    public Matiere(int id, String libelle, String enseignant, int image, boolean type) {
+        this.id = id;
+        this.libelle = libelle;
+        this.enseignant = enseignant;
+        this.image = image;
+        this.type = type;
     }
 
     public int getId() {
@@ -36,11 +45,11 @@ public class Matiere implements Parcelable {
         this.enseignant = enseignant;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 
@@ -62,7 +71,7 @@ public class Matiere implements Parcelable {
         dest.writeInt(this.getId());
         dest.writeString(this.getLibelle());
         dest.writeString(this.getEnseignant());
-        dest.writeString(this.getImage());
+        dest.writeInt(this.getImage());
         dest.writeBoolean(this.isType());
     }
 
@@ -70,7 +79,7 @@ public class Matiere implements Parcelable {
         this.setId(parcel.readInt());
         this.setLibelle(parcel.readString());
         this.setEnseignant(parcel.readString());
-        this.setImage(parcel.readString());
+        this.setImage(parcel.readInt());
         this.setType(parcel.readBoolean());
     }
 

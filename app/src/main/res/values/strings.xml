@@ -10,6 +10,7 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="success_message">Enregistrement effectué avec succès</string>
+    <string name="error_message2">Probleme de enregistrement</string>
     <string name="error_message">Aucune matière ne correspond a cet id</string>
     <string name="error_message_radiobutton">Veuillez choisir le type de matière</string>
 

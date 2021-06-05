@@ -13,8 +13,10 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import edu.glsia.devmobile1.database.DatabaseHelper;
 import edu.glsia.devmobile1.models.Matiere;
 import edu.glsia.devmobile1.models.MesMatieres;
+import edu.glsia.devmobile1.repository.MatiereRepository;
 
 public class MatiereActivity extends AppCompatActivity {
 
@@ -24,12 +26,14 @@ public class MatiereActivity extends AppCompatActivity {
     private RadioGroup rgType;
     Boolean isObligatoire = false;
     Boolean isId = false;
+    DatabaseHelper databaseHelper;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matiere);
+        databaseHelper = new DatabaseHelper(this);
 
         initViews();
     }
@@ -44,7 +48,7 @@ public class MatiereActivity extends AppCompatActivity {
         rgType = findViewById(R.id.rgType);
     }
 
-    private void ajouterMatiere(int mId, String mLibelle, String mEnseignant, String mImage, Boolean mType) {
+    private void ajouterMatiere(int mId, String mLibelle, String mEnseignant, int mImage, Boolean mType) {
 
         Matiere matiere;//= new Matiere();
 
@@ -60,8 +64,13 @@ public class MatiereActivity extends AppCompatActivity {
             matiere.setImage(mImage);
             matiere.setType(mType);
 
-            MesMatieres.matiereList.add(matiere);
-            Toast.makeText(getApplicationContext(), R.string.success_message, Toast.LENGTH_LONG).show();
+            //MesMatieres.matiereList.add(matiere);
+            MatiereRepository matiereRepository = new MatiereRepository();
+            if(matiereRepository.save(databaseHelper.getDatabase(), matiere)){
+                Toast.makeText(getApplicationContext(), R.string.success_message, Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(getApplicationContext(), R.string.error_message2, Toast.LENGTH_LONG).show();
+            }
         }
 
     }
@@ -94,6 +103,7 @@ public class MatiereActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
 
         //ecoute du radiogroup
         rgType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -143,6 +153,9 @@ public class MatiereActivity extends AppCompatActivity {
         });
 
         //ecoute du bouton rechercher
+        btnRechercher.setOnClickListener(v -> {
+
+        });
         btnRechercher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,7 +179,7 @@ public class MatiereActivity extends AppCompatActivity {
                 int mId = Integer.parseInt(String.valueOf(id.getText().toString()));
                 String mLibelle = libelle.getText().toString();
                 String mEnseignant = spEnseignant.getSelectedItem().toString();
-                String mImage = spImage.getSelectedItem().toString();
+                int mImage = 1;//Integer.parseInt(spImage.getSelectedItem().toString());
 
                 Boolean res = verifId(id.getText().toString());
 
